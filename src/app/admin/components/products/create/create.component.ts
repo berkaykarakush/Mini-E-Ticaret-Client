@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { CreateProduct } from 'src/app/contracts/createProduct';
@@ -18,6 +18,8 @@ constructor(private productService: ProductService, spinner: NgxSpinnerService, 
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
+
+  @Output() createdProduct: EventEmitter<CreateProduct> = new EventEmitter();
   create(name: HTMLInputElement, stock: HTMLInputElement, price: HTMLInputElement){
     this.showSpinner(SpinnerType.Ball8bits);
     const createProduct: CreateProduct = new CreateProduct();
@@ -31,7 +33,8 @@ constructor(private productService: ProductService, spinner: NgxSpinnerService, 
         dismissOthers: true,
         messageType: MessageType.Success,
         position: Position.TopRight
-      })
+      });
+      this.createdProduct.emit(createProduct);
     },errorMessage => {
       this.alertify.message(errorMessage,{
         dismissOthers: true,
