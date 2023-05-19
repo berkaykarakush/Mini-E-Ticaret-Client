@@ -4,6 +4,7 @@ import { CustomerModule } from './customer/customer.module';
 import { OrderModule } from './order/order.module';
 import { ProductsModule } from './products/products.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { DialogModule } from '@angular/cdk/dialog';
 
 
 
@@ -12,9 +13,9 @@ import { DashboardModule } from './dashboard/dashboard.module';
   ],
   imports: [
     CommonModule,
-    CustomerModule,
-    OrderModule,
     ProductsModule,
+    OrderModule,
+    CustomerModule,
     DashboardModule
   ]
 })
