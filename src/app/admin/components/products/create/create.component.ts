@@ -22,14 +22,7 @@ constructor(
 
 
   @Output() createdProduct: EventEmitter<CreateProduct> = new EventEmitter();
-  @Output() fileUploadOptions: Partial<FileUploadOptions> = {
-    action: "upload",
-    controller: "products",
-    explanation: "Resimleri surukleyin veya secin.",
-    accept: ".jpg, .png, .jpeg, .json",
-    isAdminPage: true,
 
-  };
   create(name: HTMLInputElement, stock: HTMLInputElement, price: HTMLInputElement){
     this.showSpinner(SpinnerType.Ball8bits);
     const createProduct: CreateProduct = new CreateProduct();
