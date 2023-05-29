@@ -12,7 +12,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
     super(spinner)
   }
   ngOnInit(): void {
-    this.showSpinner(SpinnerType.Ball8bits);
+    // this.showSpinner(SpinnerType.Ball8bits);
   }
 
 }

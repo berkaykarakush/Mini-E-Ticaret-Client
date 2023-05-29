@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+      <div class="mb-3">
+        <label for="usernameOrEmail" class="form-label">Kullanici Adi & Email</label>
+        <input #txtUsernameOrEmail type="text" placeholder="Kullanici Adi" class="form-control" id="usernameOrEmail">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Sifre</label>
+        <input #txtPassword type="password" class="form-control" placeholder="Sifre" id="password">
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="login(txtUsernameOrEmail.value, txtPassword.value)">GIris Yap</button>
+  </div>
+  <div class="col-md-3"></div>
+</div>

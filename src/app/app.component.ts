@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/common/auth.service';
+import { Router } from '@angular/router';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr.service';
 declare var $ : any;
 
 @Component({
@@ -7,8 +10,17 @@ declare var $ : any;
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ETicaretClient';
-  constructor(){
+  constructor(public authService: AuthService, private router: Router, private toastrService: CustomToastrService){
+    authService.identityCheck();
+  }
 
+  signOut(){
+    localStorage.removeItem("accessToken");
+    this.authService.identityCheck();
+    this.router.navigate([""]);
+    this.toastrService.message("Oturum basariyle kapatilmistir.","Cikis Yapildi!",{
+      messageType: ToastrMessageType.Warning,
+      position: ToastrPosition.TopRight
+    })
   }
 }

@@ -10,16 +10,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="">Home</a>
+              <a class="nav-link active" aria-current="page" routerLink="">Anasayfa</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="products">Product</a>
+              <a class="nav-link active" aria-current="page" routerLink="products">Urunler</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="basket">Basket</a>
+              <a class="nav-link active" aria-current="page" routerLink="basket">Sepet</a>
             </li>
-            <a class="btn btn-outline-success" type="submit" routerLink="admin">Yonetim Paneli</a>
-            <li class="nav-item dropdown">
+
+            <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Dropdown
               </a>
@@ -32,12 +32,27 @@
             </li>
             <li class="nav-item">
               <a class="nav-link disabled">Disabled</a>
-            </li>
+            </li> -->
           </ul>
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-sm btn-outline-warning" type="submit">Search</button>
           </form>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="btn m-1 btn-outline-info" aria-current="page" routerLink="login" *ngIf="!authService.isAuthenticated">Giris Yap</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn m-1 btn-outline-success" aria-current="page" routerLink="register" *ngIf="!authService.isAuthenticated">Kayit Ol</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="btn m-1 btn-outline-success" routerLink="admin" *ngIf="authService.isAuthenticated">Yonetim Paneli</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current="page" class="btn m-1 btn-outline-danger" *ngIf="authService.isAuthenticated" (click)="signOut()">Cikis Yap</a>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>

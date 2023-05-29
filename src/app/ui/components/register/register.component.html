@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <form [formGroup]="frm" (ngSubmit)="onSubmit(frm.value)">
+      <div class="mb-3">
+        <label for="nameSurname"  class="form-label">Ad Soyad</label>
+        <input type="text" formControlName="nameSurname" placeholder="Ad Soyad" class="form-control" id="nameSurname" aria-describedby="nameSurnameHelp" [ngClass]="{'is-invalid': component.nameSurname.errors}">
+        <div id="nameSurnameHelp" class="form-text" style="color: red;" *ngIf="submitted && component.nameSurname.errors?.required">Lutfen bos gecmeyiniz.</div>
+        <div id="nameSurnameHelp" class="form-text" style="color: red;" *ngIf="submitted && (component.nameSurname.errors?.minlength || component.nameSurname.errors?.maxlength)">Lutfen 3 - 50 karakter arasinda bir deger giriniz.</div>
+      </div>
+      <div class="mb-3">
+        <label for="username" class="form-label">Kullanici Adi</label>
+        <input type="text" formControlName="username" placeholder="Kullanici Adi" class="form-control" id="username" aria-describedby="usernameHelp" [ngClass]="{'is-invalid': component.username.errors}">
+        <div id="usernameHelp" class="form-text" style="color: red;" *ngIf="submitted && component.username.errors?.required">Lutfen bos gecmeyiniz.</div>
+        <div id="usernameHelp" class="form-text" style="color: red;" *ngIf="submitted && (component.username.errors?.minlength || component.username.errors?.maxlength)">Lutfen 3 - 50 karakter arasinda bir deger giriniz.</div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Adresi</label>
+        <input type="email" formControlName="email" placeholder="email@examlpe.com" class="form-control" id="email" aria-describedby="emailHelp" [ngClass]="{'is-invalid': component.email.errors}">
+        <div id="emailHelp" class="form-text" style="color: red;" *ngIf="submitted && component.email.errors?.required">Lutfen bos gecmeyiniz.</div>
+        <div id="emailHelp" class="form-text" style="color: red;" *ngIf="submitted && component.username.errors?.maxlength">Lutfen en fazla 250 karakterlik bir deger giriniz.</div>
+        <div id="emailHelp" class="form-text" style="color: red;" *ngIf="submitted && component.username.errors?.email">Lutfen en fazla 250 karakterlik bir deger giriniz.</div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Sifre</label>
+        <input type="password" formControlName="password" class="form-control" placeholder="Sifre" id="password" aria-describedby="passwordHelp" [ngClass]="{'is-invalid': component.password.errors}">
+        <div id="passwordHelp" class="form-text" style="color: red;" *ngIf="submitted && component.email.errors?.required">Lutfen bos gecmeyiniz.</div>
+      </div>
+      <div class="mb-3">
+        <label for="passwordConfirm" class="form-label">Sifre Tekrar</label>
+        <input type="password" formControlName="passwordConfirm" placeholder="Sifre Tekrar" class="form-control" id="passwordConfirm" aria-describedby="passwordConfirmHelp" [ngClass]="{'is-invalid': component.passwordConfirm.errors}">
+        <div id="passwordConfirmHelp" class="form-text" style="color: red;" *ngIf="submitted && component.email.errors?.required">Lutfen bos gecmeyiniz.</div>
+        <div id="passwordConfirmHelp" class="form-text" style="color: red;" *ngIf="submitted && frm.hasError('notSame')">Sifreler eslesmiyor</div>
+      </div>
+      <button type="submit" class="btn btn-primary">Kayit Ol</button>
+    </form>
+  </div>
+  <div class="col-md-3"></div>
+</div>
