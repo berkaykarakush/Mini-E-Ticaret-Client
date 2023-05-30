@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DeleteState } from 'src/app/directives/admin/delete.directive';
+import { DeleteState } from 'app/directives/admin/delete.directive';
 import { BaseDialog } from '../base/base-dialog';
 
 @Component({

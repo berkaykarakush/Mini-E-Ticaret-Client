@@ -10,10 +10,13 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { MAT_DIALOG_DATA, MatDialogRef,MatDialogModule, MatDialog  } from '@angular/material/dialog';
 import { JwtModule } from '@auth0/angular-jwt';
+import { GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { LoginComponent } from './ui/components/login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,12 +31,27 @@ import { JwtModule } from '@auth0/angular-jwt';
         tokenGetter: () => localStorage.getItem("accessToken"),
         allowedDomains: ["localhost:7274"]
       }
-    })
+    }),
+    SocialLoginModule,
+    GoogleSigninButtonModule,
   ],
   providers: [
     {provide: MatDialogRef, useValue: {}},
     {provide:MAT_DIALOG_DATA, useValue:{}},
-    {provide: "baseUrl", useValue:"https://localhost:7274/api", multi:true}
+    {provide: "baseUrl", useValue:"https://localhost:7274/api", multi:true},
+    {
+      provide: "SocialAuthServiceConfig",
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider("654451652149-3e9ihhg7cnl4ps1nb3g23id6nbbss2ts.apps.googleusercontent.com")
+          }
+        ],
+        onError: err => console.log(err)
+      } as SocialAuthServiceConfig
+    }
   ],
   bootstrap: [AppComponent]
 })

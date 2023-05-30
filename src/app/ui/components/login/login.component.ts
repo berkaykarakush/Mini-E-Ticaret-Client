@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BaseComponent, SpinnerType } from 'app/base/base.component';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
-import { AuthService } from 'src/app/services/common/auth.service';
-import { UserService } from 'src/app/services/common/models/user.service';
+import { AuthService } from 'app/services/common/auth.service';
+import { UserService } from 'app/services/common/models/user.service';
+import { SocialAuthService, SocialUser} from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,17 @@ export class LoginComponent extends BaseComponent{
     private userService: UserService,
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private socialAuthService: SocialAuthService) {
     super(spinner);
+    this.socialAuthService.authState.subscribe(async (user: SocialUser) => {
+      console.log(user);
+      this.showSpinner(SpinnerType.Ball8bits);
+      await userService.googleLogin(user, () => {
+        this.authService.identityCheck();
+        this.hideSpinner(SpinnerType.Ball8bits)
+      })
+    });
   }
   async login(usernameOrEmail: string, password: string){
     this.showSpinner(SpinnerType.Ball8bits);

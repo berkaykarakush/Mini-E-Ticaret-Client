@@ -1,17 +1,17 @@
 import { Component, Inject, OnInit, Output } from '@angular/core';
-import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
+import { BaseComponent, SpinnerType } from 'app/base/base.component';
 import { BaseDialog } from '../base/base-dialog';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { PartialObserver } from 'rxjs';
-import { FileUploadOptions } from 'src/app/services/common/file-upload/file-upload.component';
+import { FileUploadOptions } from 'app/services/common/file-upload/file-upload.component';
 import { identifierName } from '@angular/compiler';
-import { ProductService } from 'src/app/services/common/models/product.service';
-import { List_Product_Image } from 'src/app/contracts/list_product_image';
+import { ProductService } from 'app/services/common/models/product.service';
+import { List_Product_Image } from 'app/contracts/list_product_image';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AnimateTimings } from '@angular/animations';
-import { DialogService } from 'src/app/services/common/dialog.service';
+import { DialogService } from 'app/services/common/dialog.service';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
-import { DeleteState } from 'src/app/directives/admin/delete.directive';
+import { DeleteState } from 'app/directives/admin/delete.directive';
 declare var $: any;
 
 @Component({

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClientService } from '../http-client.service';
-import { CreateProduct } from 'src/app/contracts/createProduct';
+import { CreateProduct } from 'app/contracts/createProduct';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ArrayType, identifierName } from '@angular/compiler';
-import { List_Product } from 'src/app/contracts/list_product';
+import { List_Product } from 'app/contracts/list_product';
 import { Observable, firstValueFrom } from 'rxjs';
-import { List_Product_Image } from 'src/app/contracts/list_product_image';
+import { List_Product_Image } from 'app/contracts/list_product_image';
 
 @Injectable({
   providedIn: 'root'

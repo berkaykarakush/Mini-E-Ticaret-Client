@@ -10,8 +10,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { DeleteDirective } from 'src/app/directives/admin/delete.directive';
-import { FileUploadModule } from 'src/app/services/common/file-upload/file-upload.module';
+import { DeleteDirective } from 'app/directives/admin/delete.directive';
+import { FileUploadModule } from 'app/services/common/file-upload/file-upload.module';
 import { DialogModule } from '@angular/cdk/dialog';
 
 

@@ -9,6 +9,7 @@
         <label for="password" class="form-label">Sifre</label>
         <input #txtPassword type="password" class="form-control" placeholder="Sifre" id="password">
       </div>
+      <asl-google-signin-button></asl-google-signin-button>
       <button type="submit" class="btn btn-primary" (click)="login(txtUsernameOrEmail.value, txtPassword.value)">GIris Yap</button>
   </div>
   <div class="col-md-3"></div>

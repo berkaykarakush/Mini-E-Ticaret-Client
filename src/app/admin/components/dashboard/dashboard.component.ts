@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
-import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
+import { BaseComponent, SpinnerType } from 'app/base/base.component';
+import { AlertifyService, MessageType, Position } from 'app/services/admin/alertify.service';
 
 @Component({
   selector: 'app-dashboard',

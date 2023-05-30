@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
-import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
-import { CreateProduct } from 'src/app/contracts/createProduct';
-import { HttpClientService } from 'src/app/services/common/http-client.service';
+import { BaseComponent, SpinnerType } from 'app/base/base.component';
+import { CreateProduct } from 'app/contracts/createProduct';
+import { HttpClientService } from 'app/services/common/http-client.service';
 import { ListComponent } from './list/list.component';
 
 @Component({

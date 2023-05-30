@@ -5,11 +5,11 @@ import { HttpHeaders } from '@angular/common/http';
 import { AlertifyService, MessageType, Position } from '../../admin/alertify.service';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../ui/custom-toastr.service';
 import { MatDialog } from '@angular/material/dialog';
-import { FileUploadDialogComponent, FileUploadDialogState } from 'src/app/dialogs/file-upload-dialog/file-upload-dialog.component';
-import { BaseDialog } from 'src/app/dialogs/base/base-dialog';
+import { FileUploadDialogComponent, FileUploadDialogState } from 'app/dialogs/file-upload-dialog/file-upload-dialog.component';
+import { BaseDialog } from 'app/dialogs/base/base-dialog';
 import { DialogService } from '../dialog.service';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
-import { SpinnerType } from 'src/app/base/base.component';
+import { SpinnerType } from 'app/base/base.component';
 
 @Component({
   selector: 'app-file-upload',

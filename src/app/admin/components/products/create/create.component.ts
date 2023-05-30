@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
-import { CreateProduct } from 'src/app/contracts/createProduct';
-import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
+import { BaseComponent, SpinnerType } from 'app/base/base.component';
+import { CreateProduct } from 'app/contracts/createProduct';
+import { AlertifyService, MessageType, Position } from 'app/services/admin/alertify.service';
 import { FileUploadOptions } from '../../../../services/common/file-upload/file-upload.component';
-import { ProductService } from 'src/app/services/common/models/product.service';
+import { ProductService } from 'app/services/common/models/product.service';
 import { outputAst } from '@angular/compiler';
 
 @Component({
