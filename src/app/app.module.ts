@@ -50,7 +50,7 @@ import { LoginComponent } from './ui/components/login/login.component';
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider("1225277868175120")
+            provider: new FacebookLoginProvider("615261950535480")
           }
         ],
         onError: err => console.log(err)
