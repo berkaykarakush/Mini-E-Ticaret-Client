@@ -8,6 +8,7 @@ import { Token } from 'app/contracts/token/token';
 import { TokenResponse } from 'app/contracts/token/tokenResponse';
 import { Router } from '@angular/router';
 import { SocialUser } from '@abacritt/angularx-social-login';
+import { coerceStringArray } from '@angular/cdk/coercion';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,23 @@ export class UserService {
    if(tokenResponse){
     localStorage.setItem("accessToken", tokenResponse.token.accessToken);
     this.toastrService.message("Google uzerinden giris yapilmistir","Giris Basarili!",{
+      messageType: ToastrMessageType.Success,
+      position: ToastrPosition.TopRight
+    });
+   }
+   callBackFunction();
+  }
+
+  async facebookLogin(user: SocialUser, callBackFunction: () => void): Promise<any>{
+    const observable: Observable<SocialUser | TokenResponse> = this.httpClientService.post<SocialUser | TokenResponse>({
+      action: "facebook-login",
+      controller: "users"
+    }, user);
+   const tokenResponse: TokenResponse =  await firstValueFrom(observable) as TokenResponse;
+
+   if(tokenResponse){
+    localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+    this.toastrService.message("Facebook uzerinden giris yapilmistir","Giris Basarili!",{
       messageType: ToastrMessageType.Success,
       position: ToastrPosition.TopRight
     });

@@ -10,7 +10,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { MAT_DIALOG_DATA, MatDialogRef,MatDialogModule, MatDialog  } from '@angular/material/dialog';
 import { JwtModule } from '@auth0/angular-jwt';
-import { GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { LoginComponent } from './ui/components/login/login.component';
 
 @NgModule({
@@ -47,6 +47,10 @@ import { LoginComponent } from './ui/components/login/login.component';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider("654451652149-3e9ihhg7cnl4ps1nb3g23id6nbbss2ts.apps.googleusercontent.com")
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider("1225277868175120")
           }
         ],
         onError: err => console.log(err)

@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BaseComponent, SpinnerType } from 'app/base/base.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'app/services/common/auth.service';
 import { UserService } from 'app/services/common/models/user.service';
-import { SocialAuthService, SocialUser} from '@abacritt/angularx-social-login';
+import { FacebookLoginProvider, SocialAuthService, SocialUser} from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent extends BaseComponent{
+export class LoginComponent extends BaseComponent implements OnInit{
   constructor(
     spinner: NgxSpinnerService,
     private userService: UserService,
@@ -20,14 +20,27 @@ export class LoginComponent extends BaseComponent{
     private router: Router,
     private socialAuthService: SocialAuthService) {
     super(spinner);
-    this.socialAuthService.authState.subscribe(async (user: SocialUser) => {
-      console.log(user);
+    socialAuthService.authState.subscribe(async (user: SocialUser) => {
+      console.log(user)
       this.showSpinner(SpinnerType.Ball8bits);
-      await userService.googleLogin(user, () => {
-        this.authService.identityCheck();
-        this.hideSpinner(SpinnerType.Ball8bits)
-      })
+      switch(user.provider){
+        case "GOOGLE":
+          await userService.googleLogin(user, () => {
+            this.authService.identityCheck();
+            this.hideSpinner(SpinnerType.Ball8bits);
+          });
+          break;
+        case "FACEBOOK":
+          await userService.facebookLogin(user, () => {
+            this.authService.identityCheck();
+            this.hideSpinner(SpinnerType.Ball8bits);
+          });
+          break;
+      }
     });
+  }
+  ngOnInit(): void {
+
   }
   async login(usernameOrEmail: string, password: string){
     this.showSpinner(SpinnerType.Ball8bits);
@@ -40,5 +53,9 @@ export class LoginComponent extends BaseComponent{
       })
       this.hideSpinner(SpinnerType.Ball8bits);
     });
+  }
+
+  facebookLogin(){
+    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 }
