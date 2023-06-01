@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../ui/custom-toastr.service';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpStatusCode } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
+import { UserAuthService } from './models/user-auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
 
-  constructor(private toastrService: CustomToastrService) { }
+  constructor(private toastrService: CustomToastrService, private userAuthService: UserAuthService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(catchError(error => {
       switch(error.status){
@@ -16,6 +17,8 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
           this.toastrService.message("Bu islem icin gecerli yetkiniz bulunmamaktadir.","Yetkisiz Erisim!",{
             messageType: ToastrMessageType.Warning,
             position: ToastrPosition.TopFullWidth
+          });
+          this.userAuthService.refreshTokenLogin(localStorage.getItem("refreshToken")).then(data => {
           });
           break;
         case HttpStatusCode.InternalServerError:

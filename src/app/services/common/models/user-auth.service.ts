@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { TokenResponse } from 'app/contracts/token/tokenResponse';
-import { Observable, firstValueFrom } from 'rxjs';
+import { Observable, first, firstValueFrom } from 'rxjs';
 import { HttpClientService } from '../http-client.service';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from 'app/services/ui/custom-toastr.service';
 import { SocialUser } from '@abacritt/angularx-social-login';
+import { Token } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class UserAuthService {
     const tokenResponse: TokenResponse = await firstValueFrom(observable) as TokenResponse;
 
     if(tokenResponse){
-      localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+    localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
+    localStorage.setItem("accessToken", tokenResponse.token.accessToken);
       this.toastrService.message("Basariyla giris yapildi","Giris Basarili",{
         messageType: ToastrMessageType.Success,
         position: ToastrPosition.TopRight
@@ -39,6 +41,7 @@ export class UserAuthService {
 
    if(tokenResponse){
     localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+    localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
     this.toastrService.message("Google uzerinden giris yapilmistir","Giris Basarili!",{
       messageType: ToastrMessageType.Success,
       position: ToastrPosition.TopRight
@@ -55,6 +58,7 @@ export class UserAuthService {
    const tokenResponse: TokenResponse =  await firstValueFrom(observable) as TokenResponse;
 
    if(tokenResponse){
+    localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
     localStorage.setItem("accessToken", tokenResponse.token.accessToken);
     this.toastrService.message("Facebook uzerinden giris yapilmistir","Giris Basarili!",{
       messageType: ToastrMessageType.Success,
@@ -62,5 +66,19 @@ export class UserAuthService {
     });
    }
    callBackFunction();
+  }
+  async refreshTokenLogin(refreshToken: string, callBackFunction?: () => void): Promise<any>{
+    const observable: Observable<any | TokenResponse> = this.httpClientService.post({
+      action: "refreshtokenlogin",
+      controller: "auth"
+    },{refreshToken: refreshToken});
+
+    const tokenResponse: TokenResponse = await firstValueFrom(observable) as TokenResponse;
+
+    if(tokenResponse){
+      localStorage.setItem("refreshToken", tokenResponse.token.refreshToken);
+      localStorage.setItem("accessToken", tokenResponse.token.accessToken);
+    }
+    callBackFunction();
   }
 }
