@@ -15,11 +15,13 @@ import { LoginComponent } from './ui/components/login/login.component';
 import { HttpErrorHandlerInterceptorService } from './services/common/http-error-handler-interceptor.service';
 import { UserService } from './services/common/models/user.service';
 import { multicast } from 'rxjs';
+import { DynamicLoadComponentDirective } from './directives/common/dynamic-load-component.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    DynamicLoadComponentDirective,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +44,7 @@ import { multicast } from 'rxjs';
     {provide: MatDialogRef, useValue: {}},
     {provide:MAT_DIALOG_DATA, useValue:{}},
     {provide: "baseUrl", useValue:"https://localhost:7274/api", multi:true},
+    {provide: "baseSignalRUrl", useValue:"https://localhost:7274/", multi:true},
     {
       provide: "SocialAuthServiceConfig",
       useValue: {

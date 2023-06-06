@@ -15,9 +15,9 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" routerLink="products">Urunler</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link active" aria-current="page" routerLink="basket">Sepet</a>
-            </li>
+            </li> -->
 
             <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -52,7 +52,11 @@
             <li class="nav-item">
               <a aria-current="page" class="btn m-1 btn-outline-danger" *ngIf="authService.isAuthenticated" (click)="signOut()">Cikis Yap</a>
             </li>
+            <li class="nav-item">
+              <a aria-current="page" class="btn m-1 btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="loadComponent()">Sepet</a>
+            </li>
           </ul>
+
         </div>
       </div>
     </nav>
@@ -72,3 +76,9 @@
 <ngx-spinner size="default" name="s3" type="ball-beat"></ngx-spinner>
 
 
+<!-- <app-baskets></app-baskets> -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <ng-template appDynamicLoadComponent></ng-template>
+  </div>
+</div>
