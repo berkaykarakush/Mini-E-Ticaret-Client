@@ -53,7 +53,7 @@
               <a aria-current="page" class="btn m-1 btn-outline-danger" *ngIf="authService.isAuthenticated" (click)="signOut()">Cikis Yap</a>
             </li>
             <li class="nav-item">
-              <a aria-current="page" class="btn m-1 btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="loadComponent()">Sepet</a>
+              <button class="btn m-1 btn-success" data-bs-toggle="modal" data-bs-target="#basketModal" (click)="loadComponent()" type="submit">Sepet</button>
             </li>
           </ul>
 
@@ -77,7 +77,7 @@
 
 
 <!-- <app-baskets></app-baskets> -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="basketModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <ng-template appDynamicLoadComponent></ng-template>
   </div>

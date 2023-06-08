@@ -9,6 +9,9 @@ import { Create_Order } from 'app/contracts/order/create_order';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from 'app/services/ui/custom-toastr.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { DialogService } from 'app/services/common/dialog.service';
+import { BasketItemDeleteState, BasketItemRemoveDialogComponent } from 'app/dialogs/basket-item-remove-dialog/basket-item-remove-dialog.component';
+import { ShoppingCompleteDialogComponent, ShoppingCompleteDialogState } from 'app/dialogs/shopping-complete-dialog/shopping-complete-dialog.component';
 declare var $: any;
 @Component({
   selector: 'app-baskets',
@@ -16,7 +19,12 @@ declare var $: any;
   styleUrls: ['./baskets.component.scss']
 })
 export class BasketsComponent extends BaseComponent implements OnInit{
-  constructor(spinner:NgxSpinnerService, private basketService:BasketService, private orderService: OrderService, private toastrService: CustomToastrService, private router: Router){
+  constructor(spinner:NgxSpinnerService,
+    private basketService:BasketService,
+    private orderService: OrderService,
+    private toastrService: CustomToastrService,
+    private router: Router,
+    private dialogService: DialogService){
     super(spinner)
   }
   basketItems: List_Basket_Item[];
@@ -37,23 +45,35 @@ export class BasketsComponent extends BaseComponent implements OnInit{
     this.hideSpinner(SpinnerType.Ball8bits);
   }
 
-  async removeBasketItem(basketItemId: string){
-    this.showSpinner(SpinnerType.Ball8bits);
-    await this.basketService.remove(basketItemId);
-    $("."+basketItemId).fadeOut(100, () => this.hideSpinner(SpinnerType.Ball8bits));
+  removeBasketItem(basketItemId: string){
+    this.dialogService.openDialog({
+      componentType: BasketItemRemoveDialogComponent,
+      data: BasketItemDeleteState.Yes,
+      afterClosed: async () => {
+        this.showSpinner(SpinnerType.Ball8bits);
+        await this.basketService.remove(basketItemId);
+        $("."+basketItemId).fadeOut(100, () => this.hideSpinner(SpinnerType.Ball8bits));
+      }
+    });
   }
 
-  async shoppingComplete(){
-    this.showSpinner(SpinnerType.Ball8bits);
-    const order: Create_Order = new Create_Order();
-    order.address = "Ankara";
-    order.description = "Bla bla bla";
-   await this.orderService.create(order);
-   this.hideSpinner(SpinnerType.Ball8bits);
-   this.toastrService.message("Siparis olusturuldu", "Siparis tamamlandi",{
-    messageType: ToastrMessageType.Success,
-    position: ToastrPosition.TopRight
-   });
-   this.router.navigate(["/"]);
+  shoppingComplete(){
+    this.dialogService.openDialog({
+      componentType: ShoppingCompleteDialogComponent,
+      data: ShoppingCompleteDialogState.Yes,
+      afterClosed: async () => {
+        this.showSpinner(SpinnerType.Ball8bits);
+        const order: Create_Order = new Create_Order();
+        order.address = "Ankara";
+        order.description = "Bla bla bla";
+        await this.orderService.create(order);
+        this.hideSpinner(SpinnerType.Ball8bits);
+        this.toastrService.message("Siparis olusturuldu", "Siparis tamamlandi",{
+          messageType: ToastrMessageType.Success,
+          position: ToastrPosition.TopRight
+        });
+        this.router.navigate(["/"]);
+      }
+    })
   }
 }
