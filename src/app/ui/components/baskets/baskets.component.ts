@@ -46,6 +46,8 @@ export class BasketsComponent extends BaseComponent implements OnInit{
   }
 
   removeBasketItem(basketItemId: string){
+    $("#basketModal").modal("hide");
+
     this.dialogService.openDialog({
       componentType: BasketItemRemoveDialogComponent,
       data: BasketItemDeleteState.Yes,
@@ -53,6 +55,8 @@ export class BasketsComponent extends BaseComponent implements OnInit{
         this.showSpinner(SpinnerType.Ball8bits);
         await this.basketService.remove(basketItemId);
         $("."+basketItemId).fadeOut(100, () => this.hideSpinner(SpinnerType.Ball8bits));
+        $("#basketModal").modal("show");
+
       }
     });
   }

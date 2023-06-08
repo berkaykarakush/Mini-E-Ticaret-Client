@@ -14,11 +14,11 @@ export class ShoppingCompleteDialogComponent extends BaseDialog<ShoppingComplete
   }
 
   show: boolean = false;
-  complete(){
+  complete() {
     this.show = true;
   }
   ngOnDestroy(): void {
-    if(!this.show)
+    if (!this.show)
       $("#basketModal").modal("show");
   }
 }
