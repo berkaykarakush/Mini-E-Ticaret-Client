@@ -22,7 +22,7 @@ export class ListComponent extends BaseComponent implements OnInit {
      private dialogService: DialogService){
     super(spinner)
   }
-  displayedColumns: string[] = ['orderCode', 'userName', 'totalPrice', 'createddate', 'viewdetail','delete'];
+  displayedColumns: string[] = ['orderCode', 'userName', 'totalPrice', 'createddate', 'completed','viewdetail','delete'];
   dataSource: MatTableDataSource<List_Order> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

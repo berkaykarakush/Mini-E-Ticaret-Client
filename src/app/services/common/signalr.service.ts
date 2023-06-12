@@ -5,20 +5,24 @@ import { HubConnection, HubConnectionBuilder} from '@microsoft/signalr';
 })
 export class SignalRService {
   constructor(@Inject("baseSignalRUrl") private baseSignalRUrl: string) { }
-  start(hubUrl: string){
+  start(hubUrl: string) {
     hubUrl = this.baseSignalRUrl + hubUrl;
+
     const builder: HubConnectionBuilder = new HubConnectionBuilder();
 
-    const hubConnection: HubConnection = builder.withUrl(hubUrl).withAutomaticReconnect().build();
+    const hubConnection: HubConnection = builder.withUrl(hubUrl)
+      .withAutomaticReconnect()
+      .build();
+
     hubConnection.start()
-                  .then(() => console.log("Connected"))
-                  .catch(error => setTimeout(() => this.start(hubUrl), 2000));
+      .then(() => console.log("Connected"))
+      .catch(error => setTimeout(() => this.start(hubUrl), 2000));
+
     hubConnection.onreconnected(connectionId => console.log("Reconnected"));
     hubConnection.onreconnecting(error => console.log("Reconnecting"));
     hubConnection.onclose(error => console.log("Close reconnection"));
     return hubConnection;
   }
-
   invoke(hubUrl: string, procedureName: string, message: any, successCallBack?: (value) => void, errorCallBack?: (error) => void){
     this.start(hubUrl).invoke(procedureName, message)
                   .then(successCallBack)
