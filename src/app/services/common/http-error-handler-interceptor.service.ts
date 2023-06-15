@@ -33,6 +33,10 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
             });
             }
           }).then(data => {
+            this.toastrService.message("Bu islem icin gecerli yetkiniz bulunmamaktadir.","Yetkisiz Erisim!",{
+              messageType: ToastrMessageType.Warning,
+              position: ToastrPosition.TopFullWidth
+              });
           });
           break;
         case HttpStatusCode.InternalServerError:

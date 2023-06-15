@@ -13,7 +13,10 @@ import { OrderDetailDialogComponent } from './order-detail-dialog/order-detail-d
 import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { CompleteOrderDialogComponent } from './complete-order-dialog/complete-order-dialog.component';
-
+import { AuthorizeMenuDialogComponent } from './authorize-menu-dialog/authorize-menu-dialog.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatListModule, MatListOption} from '@angular/material/list';
+import { AuthorizeUserDialogComponent } from './authorize-user-dialog/authorize-user-dialog.component';
 @NgModule({
   declarations: [
     DeleteDialogComponent,
@@ -21,7 +24,9 @@ import { CompleteOrderDialogComponent } from './complete-order-dialog/complete-o
     BasketItemRemoveDialogComponent,
     ShoppingCompleteDialogComponent,
     OrderDetailDialogComponent,
-    CompleteOrderDialogComponent
+    CompleteOrderDialogComponent,
+    AuthorizeMenuDialogComponent,
+    AuthorizeUserDialogComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +35,9 @@ import { CompleteOrderDialogComponent } from './complete-order-dialog/complete-o
     MatButtonModule,
     MatCardModule,
     MatToolbarModule,
-    MatTableModule
+    MatTableModule,
+    MatBadgeModule,
+    MatListModule
   ]
 })
 export class DialogModule { }
