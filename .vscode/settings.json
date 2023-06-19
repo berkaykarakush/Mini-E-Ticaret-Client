@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/6d07adea-7844-45c2-970b-300a65f1ed4d/resourceGroups/minieticaretgroup/providers/Microsoft.Web/sites/minieticaretangularclient",
+    "appService.deploySubpath": "dist"
+}

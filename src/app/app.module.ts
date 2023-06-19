@@ -34,7 +34,7 @@ import { DynamicLoadComponentDirective } from './directives/common/dynamic-load-
     JwtModule.forRoot({
       config:{
         tokenGetter: () => localStorage.getItem("accessToken"),
-        allowedDomains: ["localhost:7274"]
+        allowedDomains: ["eticaretapiapi20230619143509.azurewebsites.net"]
       }
     }),
     SocialLoginModule,
@@ -43,8 +43,8 @@ import { DynamicLoadComponentDirective } from './directives/common/dynamic-load-
   providers: [
     {provide: MatDialogRef, useValue: {}},
     {provide:MAT_DIALOG_DATA, useValue:{}},
-    {provide: "baseUrl", useValue:"https://localhost:7274/api", multi:true},
-    {provide: "baseSignalRUrl", useValue:"https://localhost:7274/", multi:true},
+    {provide: "baseUrl", useValue:"https://eticaretapiapi20230619143509.azurewebsites.net/api", multi:true},
+    {provide: "baseSignalRUrl", useValue:"https://eticaretapiapi20230619143509.azurewebsites.net/", multi:true},
     {
       provide: "SocialAuthServiceConfig",
       useValue: {
